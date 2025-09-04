@@ -7,43 +7,45 @@
     </a>
   </div>
 
+
   <div class="flex-none hidden lg:flex">
     <ul class="menu menu-horizontal px-1 font-semibold">
-      <li><a>Dashboard</a></li>
-      <li><a>Shop</a></li>
-      <li><a>Cart</a></li>
+      @for (dash of dashboardItems; track dash.icon) {
+      <li>
+        <a
+          ><mat-icon class="mr-1">{{ dash.icon }}</mat-icon> {{ dash.label }}</a
+        >
+      </li>
+      }
     </ul>
   </div>
+<div class="flex justify-center items-center">
 
-  <div class="dropdown dropdown-end">
-    <button mat-icon-button class="mx-2" aria-label="Theme switcher">
-      <mat-icon>palette</mat-icon>
-    </button>
-    <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-      <li><a data-set-theme="light">Light</a></li>
-      <li><a data-set-theme="dark">Dark</a></li>
-      <li><a data-set-theme="cupcake">Cupcake</a></li>
-      <li><a data-set-theme="synthwave">Synthwave</a></li>
-      <li><a data-set-theme="retro">Retro</a></li>
-    </ul>
+
+<!-- Theme switcher dropdown -->
+  <div class="flex-none">
+    <div class="dropdown dropdown-end">
+      <button mat-icon-button class="mx-2" aria-label="Theme switcher" tabindex="0">
+        <mat-icon>palette</mat-icon>
+      </button>
+      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+        <!-- This list is now generated dynamically with a @for loop -->
+        @for(theme of themes; track theme) {
+        <li>
+          <a [attr.data-set-theme]="theme">{{ theme | titlecase }}</a>
+        </li>
+        }
+      </ul>
+    </div>
   </div>
 
-  <div class="flex items-center space-x-4">
-    <button
-      class="!flex !items-center"
-      mat-icon-button
-      [matMenuTriggerFor]="userMenu"
-      aria-label="User account menu"
-    >
-      <!-- 
-        PRACTICAL AVATAR:
-        We've replaced the placeholder <img> with a scalable <mat-icon>.
-        This is a robust fallback that always works and looks professional.
-        The DaisyUI "avatar placeholder" classes are used for styling.
-      -->
-      <div class="avatar placeholder">
+
+<!-- User account menu -->
+  <div class="flex items-center ">
+    <button class="" mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="User account menu">
+      <div class="avatar placeholder !flex !items-center !justify-center">
         <div class="bg-neutral text-neutral-content rounded-full w-10">
-          <mat-icon>person</mat-icon>
+          <mat-icon class="">person</mat-icon>
         </div>
       </div>
     </button>
@@ -62,5 +64,6 @@
         } } }
       </ul>
     </mat-menu>
+  </div>
   </div>
 </mat-toolbar>

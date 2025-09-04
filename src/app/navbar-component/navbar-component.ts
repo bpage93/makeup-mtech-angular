@@ -3,11 +3,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-navbar-component',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, TitleCasePipe],
   templateUrl: './navbar-component.html',
   styleUrl: './navbar-component.css',
 })
@@ -19,4 +20,12 @@ export class NavbarComponent {
     { type: 'link', label: 'Logout', icon: 'logout' },
     { type: 'link', label: 'Makeup', icon: 'face' },
   ];
+
+  dashboardItems = [
+    { type: 'link', label: 'Dashboard', icon: 'dashboard' },
+    { type: 'link', label: 'Shop', icon: 'shopping_cart' },
+    { type: 'link', label: 'Checkout', icon: 'payment' },
+  ];
+
+   themes = ['light', 'dark', 'cupcake', 'synthwave', 'retro'];
 }

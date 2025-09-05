@@ -11,9 +11,9 @@
     <ul class="menu menu-horizontal px-1 font-semibold">
       @for (dash of dashboardItems; track dash.icon) {
       <li>
-        <a
-          ><mat-icon class="mr-1">{{ dash.icon }}</mat-icon> {{ dash.label }}</a
-        >
+        <a [routerLink]="dash.route" 
+          ><mat-icon class="mr-1">{{ dash.icon }}</mat-icon> {{ dash.label }}
+        </a>
       </li>
       }
     </ul>

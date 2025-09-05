@@ -1,1 +1,148 @@
-<p>dashboard-component works!</p>
+<!-- Main container with padding -->
+    <div class="p-6 bg-base-200 min-h-screen">
+      
+      <!-- Header -->
+      <header class="mb-8">
+        <h1 class="text-4xl font-bold">Dashboard</h1>
+        <p class="text-base-content/70">Welcome back, Anna!</p>
+      </header>
+
+      <!-- Stat Cards Section using DaisyUI -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <!-- Stat 1: Revenue -->
+        <div class="stats shadow bg-base-100">
+          <div class="stat">
+            <div class="stat-figure text-primary">
+              <mat-icon>attach_money</mat-icon>
+            </div>
+            <div class="stat-title">Revenue</div>
+            <div class="stat-value">$31,500</div>
+            <div class="stat-desc">↗︎ 400 (22%)</div>
+          </div>
+        </div>
+
+        <!-- Stat 2: New Users -->
+        <div class="stats shadow bg-base-100">
+          <div class="stat">
+            <div class="stat-figure text-secondary">
+              <mat-icon>group_add</mat-icon>
+            </div>
+            <div class="stat-title">New Users</div>
+            <div class="stat-value">1,200</div>
+            <div class="stat-desc">↗︎ 90 (14%)</div>
+          </div>
+        </div>
+
+        <!-- Stat 3: Orders -->
+        <div class="stats shadow bg-base-100">
+          <div class="stat">
+            <div class="stat-figure text-accent">
+              <mat-icon>shopping_cart</mat-icon>
+            </div>
+            <div class="stat-title">New Orders</div>
+            <div class="stat-value">852</div>
+            <div class="stat-desc">↘︎ 35 (4%)</div>
+          </div>
+        </div>
+
+        <!-- Stat 4: Pending Tasks -->
+        <div class="stats shadow bg-base-100">
+          <div class="stat">
+            <div class="stat-figure text-info">
+              <mat-icon>pending_actions</mat-icon>
+            </div>
+            <div class="stat-title">Pending Tasks</div>
+            <div class="stat-value">15</div>
+            <div class="stat-desc">2 remaining today</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Grid -->
+      <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Left Side: Chart and Table -->
+        <div class="lg:col-span-2 space-y-6">
+          <!-- Sales Chart Card using Angular Material Card -->
+          <mat-card class="rounded-lg shadow-lg">
+            <mat-card-header>
+              <mat-card-title>Sales Analytics</mat-card-title>
+              <mat-card-subtitle>Last 30 Days</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="p-4">
+              <!-- Placeholder for a chart -->
+              <div class="bg-base-300 h-64 rounded-lg flex items-center justify-center">
+                <p class="text-base-content/50">[ Chart would be displayed here ]</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Recent Orders Table using DaisyUI Table -->
+          <div class="bg-base-100 p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-4">Recent Orders</h3>
+            <div class="overflow-x-auto">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>1</th>
+                    <td>Cy Ganderton</td>
+                    <td>Lipstick - Red Velvet</td>
+                    <td><div class="badge badge-success">Shipped</div></td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td>Hart Lanation</td>
+                    <td>Eyeliner - Midnight</td>
+                    <td><div class="badge badge-warning">Processing</div></td>
+                  </tr>
+                  <tr>
+                    <th>3</th>
+                    <td>Brice Swyre</td>
+                    <td>Foundation - Fair</td>
+                    <td><div class="badge badge-success">Shipped</div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Recent Activity Card -->
+        <mat-card class="rounded-lg shadow-lg">
+          <mat-card-header>
+            <mat-card-title>Recent Activity</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="p-4">
+            <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+              <li>
+                <div class="timeline-middle"><mat-icon>add_shopping_cart</mat-icon></div>
+                <div class="timeline-end timeline-box">New order #1138 by J. Doe</div>
+                <hr/>
+              </li>
+              <li>
+                <hr/>
+                <div class="timeline-middle"><mat-icon>person_add</mat-icon></div>
+                <div class="timeline-start timeline-box">New user registration: M. Smith</div>
+                <hr/>
+              </li>
+              <li>
+                <hr/>
+                <div class="timeline-middle"><mat-icon>paid</mat-icon></div>
+                <div class="timeline-end timeline-box">Payment received for order #1137</div>
+                <hr/>
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+
+      </section>
+
+    </div>

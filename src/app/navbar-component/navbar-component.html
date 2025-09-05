@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="navbar bg-base-100 shadow-lg px-4">
   <!-- Logo / App Name section -->
   <div class="flex-1">
-    <a class="btn btn-ghost text-2xl font-bold">
+    <a class="btn text-2xl font-bold">
       <mat-icon class="mr-2">face</mat-icon>
       Makeup Pro
     </a>
@@ -11,7 +11,7 @@
     <ul class="menu menu-horizontal px-1 font-semibold">
       @for (dash of dashboardItems; track dash.icon) {
       <li>
-        <a [routerLink]="dash.route" 
+        <a class="btn" [routerLink]="dash.route"
           ><mat-icon class="mr-1">{{ dash.icon }}</mat-icon> {{ dash.label }}
         </a>
       </li>

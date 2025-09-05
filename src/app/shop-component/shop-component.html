@@ -1,1 +1,35 @@
-<p>shop-component works!</p>
+<div class="container mx-auto p-4">
+  <h1 class="text-4xl font-bold mb-8 text-center">Product Categories</h1>
+
+  <ng-container *ngIf="productTypes$ | async as productTypes">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- 2. The @for loop iterates over the clean category data from the service. -->
+      @for (productType of productTypes; track productType.name) {
+      <div
+        class="card image-full bg-base-100 shadow-md rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 before:content-[''] before:absolute before:inset-0 before:bg-gray-100 before:opacity-30 before:z-10"
+      >
+        <figure class="h-45">
+          <!-- 3. The bindings now perfectly match the CategoryDisplayData interface -->
+          <img
+            [src]="productType.imageUrl"
+            [alt]="productType.name"
+            class="w-full h-full object-cover"
+          />
+        </figure>
+
+        <div class="card-body justify-end z-20">
+          <h2 class="card-title text-white">{{ productType.name | titlecase }}</h2>
+          <p class="text-white/80">
+            Browse our collection of high-quality {{ productType.name.toLowerCase() }}.
+          </p>
+          <div class="card-actions justify-end mt-4">
+            <button class="btn btn-primary btn-sm shadow hover:shadow-lg transition-all">
+              View All
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </ng-container>
+</div>

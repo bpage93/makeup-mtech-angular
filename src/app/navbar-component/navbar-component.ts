@@ -27,5 +27,5 @@ export class NavbarComponent {
     { type: 'link', label: 'Checkout', icon: 'payment' },
   ];
 
-   themes = ['light', 'dark', 'cupcake', 'synthwave', 'retro'];
+   themes = ['light', 'dark', 'luxury', 'cupcake', 'synthwave', 'retro','valentine', 'cyberpunk', 'halloween', 'garden', 'forest', 'aqua', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black', 'dracula', 'cmyk', 'autumn', 'business', 'acid', 'lemonade', 'night', 'coffee', 'winter'];
 }

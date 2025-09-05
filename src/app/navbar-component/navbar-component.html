@@ -7,7 +7,6 @@
     </a>
   </div>
 
-
   <div class="flex-none hidden lg:flex">
     <ul class="menu menu-horizontal px-1 font-semibold">
       @for (dash of dashboardItems; track dash.icon) {
@@ -19,51 +18,62 @@
       }
     </ul>
   </div>
-<div class="flex justify-center items-center">
-
-
-<!-- Theme switcher dropdown -->
-  <div class="flex-none">
-    <div class="dropdown dropdown-end">
-      <button mat-icon-button class="mx-2" aria-label="Theme switcher" tabindex="0">
-        <mat-icon>palette</mat-icon>
-      </button>
-      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-        <!-- This list is now generated dynamically with a @for loop -->
-        @for(theme of themes; track theme) {
-        <li>
-          <a [attr.data-set-theme]="theme">{{ theme | titlecase }}</a>
-        </li>
-        }
-      </ul>
-    </div>
-  </div>
-
-
-<!-- User account menu -->
-  <div class="flex items-center ">
-    <button class="" mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="User account menu">
-      <div class="avatar placeholder !flex !items-center !justify-center">
-        <div class="bg-neutral text-neutral-content rounded-full w-10">
-          <mat-icon class="">person</mat-icon>
-        </div>
+  <div class="flex justify-center items-center">
+    <!-- Theme switcher dropdown -->
+    <div class="flex-none">
+      <div class="dropdown dropdown-end">
+        <button
+          mat-icon-button
+          class="tooltip tooltip-bottom mx-2"
+          data-tip="Theme"
+          aria-label="Theme switcher"
+          tabindex="0"
+        >
+          <mat-icon>palette</mat-icon>
+        </button>
+        <ul
+          tabindex="0"
+          class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <!-- This list is now generated dynamically with a @for loop -->
+          @for(theme of themes; track theme) {
+          <li>
+            <a [attr.data-set-theme]="theme">{{ theme | titlecase }}</a>
+          </li>
+          }
+        </ul>
       </div>
-    </button>
-    <mat-menu #userMenu="matMenu" class="bg-base-100 rounded-box shadow-lg mt-2">
-      <ul class="menu p-2 w-56">
-        <li class="menu-title"><span>Anna Smith</span></li>
+    </div>
 
-        @for (item of userMenuItems; track item.icon) { @switch (item.type) { @case ('link') {
-        <li>
-          <a
-            ><mat-icon>{{ item.icon }}</mat-icon> {{ item.label }}</a
-          >
-        </li>
-        } @case ('divider') {
-        <div class="divider my-1"></div>
-        } } }
-      </ul>
-    </mat-menu>
-  </div>
+    <!-- User account menu -->
+    <div class="flex items-center">
+      <button
+        class=""
+        mat-icon-button
+        [matMenuTriggerFor]="userMenu"
+        aria-label="User account menu"
+      >
+        <div class="avatar avatar-placeholder !flex !items-center !justify-center">
+          <div class="bg-neutral text-neutral-content rounded-full w-10">
+            <mat-icon class="">person</mat-icon>
+          </div>
+        </div>
+      </button>
+      <mat-menu #userMenu="matMenu" class="bg-base-100 rounded-box shadow-lg mt-2">
+        <ul class="menu p-2 w-56">
+          <li class="menu-title"><span>Anna Smith</span></li>
+
+          @for (item of userMenuItems; track item.icon) { @switch (item.type) { @case ('link') {
+          <li>
+            <a
+              ><mat-icon>{{ item.icon }}</mat-icon> {{ item.label }}</a
+            >
+          </li>
+          } @case ('divider') {
+          <div class="divider my-1"></div>
+          } } }
+        </ul>
+      </mat-menu>
+    </div>
   </div>
 </mat-toolbar>

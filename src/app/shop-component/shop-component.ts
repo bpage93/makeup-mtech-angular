@@ -1,24 +1,48 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// Correctly import from the service file, including the new interface
 import { MakeupService, CategoryDisplayData } from '../Service/makeupService';
-import { Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FormsModule } from '@angular/forms';
+
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-shop',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    FormsModule, 
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule
+  ],
   templateUrl: './shop-component.html',
   styleUrl: './shop-component.css'
 })
 export class ShopComponent {
   private makeupService = inject(MakeupService);
 
-  // Strongly type the observable for better type safety and autocompletion
-  public productTypes$: Observable<CategoryDisplayData[]>;
+  // 1. Create a signal to hold the user's search term
+  public searchTerm = signal('');
 
-  constructor() {
-    // Connect directly to the service's clean data stream
-    this.productTypes$ = this.makeupService.categoryDisplayData$;
-  }
+  // 2. Convert the observable from the service into a signal
+  private productTypes = toSignal(this.makeupService.categoryDisplayData$, { initialValue: [] });
+
+  // 3. Create a computed signal that automatically filters the list
+  public filteredProductTypes = computed(() => {
+    const term = this.searchTerm().toLowerCase();
+    const types = this.productTypes();
+    
+    if (!term) {
+      return types; // If search is empty, return all types
+    }
+
+    // Otherwise, filter the types based on the search term
+    return types.filter(type => 
+      type.name.toLowerCase().includes(term)
+    );
+  });
 }

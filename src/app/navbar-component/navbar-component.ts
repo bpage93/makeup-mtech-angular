@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { TitleCasePipe } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
-import { routes } from '../app.routes';
 
 @Component({
   selector: 'app-navbar-component',

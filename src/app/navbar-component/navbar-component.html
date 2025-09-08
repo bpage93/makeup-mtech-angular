@@ -48,12 +48,15 @@
     <!-- User account menu -->
     <div class="flex items-center">
       <button
-        class=""
+        class="tooltip tooltip-bottom"
+        data-tip="User account"
         mat-icon-button
         [matMenuTriggerFor]="userMenu"
         aria-label="User account menu"
       >
-        <div class="avatar avatar-placeholder !flex !items-center !justify-center">
+        <div
+          class=" avatar avatar-placeholder !flex !items-center !justify-center"
+        >
           <div class="bg-neutral text-neutral-content rounded-full w-10">
             <mat-icon class="">person</mat-icon>
           </div>

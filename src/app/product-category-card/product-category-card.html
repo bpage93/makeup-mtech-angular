@@ -1,0 +1,23 @@
+<div class="card image-full bg-base-100 shadow-md rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 before:content-[''] before:absolute before:inset-0 before:bg-black before:opacity-30 before:z-10">
+  
+  <figure class="h-40">
+    <!-- 2. The bindings now refer to the 'category' @Input property -->
+    <img
+      [src]="category.imageUrl"
+      [alt]="category.name"
+      class="w-full h-full object-cover" 
+    />
+  </figure>
+
+  <div class="card-body justify-end z-20">
+    <h2 class="card-title text-white">{{ category.name | titlecase }}</h2>
+    <p class="text-white/80">
+      Browse our collection of {{ category.name.toLowerCase() }}.
+    </p>
+    <div class="card-actions justify-end mt-4">
+      <button class="btn btn-primary btn-sm shadow hover:shadow-lg transition-all">
+        View All
+      </button>
+    </div>
+  </div>
+</div>

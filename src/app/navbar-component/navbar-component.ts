@@ -5,11 +5,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { TitleCasePipe } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
+import { themeChange } from 'theme-change';
 
 @Component({
   selector: 'app-navbar-component',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, TitleCasePipe, RouterLink, RouterModule],
+  imports: [
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    TitleCasePipe,
+    RouterLink,
+    RouterModule,
+  ],
   templateUrl: './navbar-component.html',
   styleUrl: './navbar-component.css',
 })
@@ -28,5 +37,42 @@ export class NavbarComponent {
     { type: 'link', label: 'Checkout', icon: 'payment', route: '/checkout' },
   ];
 
-   themes = ['light', 'dark', 'luxury', 'cupcake', 'synthwave', 'retro','valentine', 'cyberpunk', 'halloween', 'garden', 'forest', 'aqua', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black', 'dracula', 'cmyk', 'autumn', 'business', 'acid', 'lemonade', 'night', 'coffee', 'winter'];
+  themes = [
+    'light',
+    'dark',
+    'luxury',
+    'cupcake',
+    'synthwave',
+    'retro',
+    'valentine',
+    'cyberpunk',
+    'halloween',
+    'garden',
+    'forest',
+    'aqua',
+    'lofi',
+    'pastel',
+    'fantasy',
+    'wireframe',
+    'black',
+    'dracula',
+    'cmyk',
+    'autumn',
+    'business',
+    'acid',
+    'lemonade',
+    'night',
+    'coffee',
+    'winter',
+  ];
+
+  // Add this function inside the NavbarComponent class
+  public changeTheme(theme: string): void {
+    // Find the <html> element
+    const html = document.querySelector('html');
+    if (html) {
+      // Set the 'data-theme' attribute to the chosen theme
+      html.setAttribute('data-theme', theme);
+    }
+  }
 }

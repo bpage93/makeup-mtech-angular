@@ -20,19 +20,16 @@ export interface CategoryDisplayData {
 })
 export class MakeupService {
   private http = inject(HttpClient);
-  // Using a broader API endpoint to get more categories
   private apiUrl = 'https://makeup-api.herokuapp.com/api/v1/products.json';
 
   private productsByCategory = new BehaviorSubject<CategorizedProducts>({});
   public productsByCategory$ = this.productsByCategory.asObservable();
-
-  // This is the public stream of clean data for components to use
+  
   public categoryDisplayData$: Observable<CategoryDisplayData[]>;
 
   constructor() {
     this.fetchAllProductsAndGroupThem();
 
-    // Transform the raw grouped data into the clean display data
     this.categoryDisplayData$ = this.productsByCategory$.pipe(
       map((categorizedProducts) => {
         const categories = Object.keys(categorizedProducts);
@@ -51,6 +48,18 @@ export class MakeupService {
             (item): item is CategoryDisplayData => item !== null && item.name !== 'uncategorized'
           );
       })
+    );
+  }
+
+  /**
+   * Gets the products for a single category from the already grouped data.
+   * This is the method that was missing.
+   * @param categoryName The name of the category to retrieve.
+   * @returns An Observable that emits an array of MakeupProducts for the given category.
+   */
+  public getProductsForCategory(categoryName: string): Observable<MakeupProduct[]> {
+    return this.productsByCategory$.pipe(
+      map(categorizedProducts => categorizedProducts[categoryName] || [])
     );
   }
 

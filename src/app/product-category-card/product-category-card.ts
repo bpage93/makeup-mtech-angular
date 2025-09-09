@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryDisplayData } from '../Service/makeupService'; // Import the data model
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-category-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './product-category-card.html',
   styleUrl: './product-category-card.css'
 })

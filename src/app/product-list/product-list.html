@@ -1,0 +1,39 @@
+@if(categoryName$ | async; as categoryName) {
+  <div class="container mx-auto p-4">
+    <!-- Breadcrumbs for easy navigation -->
+    <div class="text-sm breadcrumbs mb-4">
+      <ul>
+        <li><a routerLink="/shop">Categories</a></li> 
+        <li>{{ categoryName | titlecase }}</li>
+      </ul>
+    </div>
+
+    <h1 class="text-4xl font-bold mb-8">{{ categoryName | titlecase }} Products</h1>
+
+    @if (products$ | async; as products) {
+      @if(products.length > 0) {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          @for(product of products; track product.id) {
+            <div class="card bg-base-100 shadow-lg hover:shadow-2xl transition-shadow duration-300">
+              <figure class="h-64 overflow-hidden">
+                <img [src]="product.image_link" [alt]="product.name" class="w-full h-full object-cover"/>
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title">{{ product.name }}</h2>
+                <p class="text-sm text-base-content/70">{{ product.brand | titlecase }}</p>
+                <div class="card-actions justify-between items-center mt-4">
+                  <span class="text-2xl font-semibold">{{ product.price_sign }}{{ product.price }}</span>
+                  <button class="btn btn-primary">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="text-center py-10">
+          <p class="text-xl">No products found in this category.</p>
+        </div>
+      }
+    }
+  </div>
+}

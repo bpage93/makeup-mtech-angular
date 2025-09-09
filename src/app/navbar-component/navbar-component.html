@@ -37,8 +37,8 @@
         >
           <!-- This list is now generated dynamically with a @for loop -->
           @for(theme of themes; track theme) {
-          <li>
-            <a [attr.data-set-theme]="theme">{{ theme | titlecase }}</a>
+          <li (click)="changeTheme(theme)">
+            <a>{{ theme | titlecase }}</a>
           </li>
           }
         </ul>
@@ -54,9 +54,7 @@
         [matMenuTriggerFor]="userMenu"
         aria-label="User account menu"
       >
-        <div
-          class=" avatar avatar-placeholder !flex !items-center !justify-center"
-        >
+        <div class="avatar avatar-placeholder !flex !items-center !justify-center">
           <div class="bg-neutral text-neutral-content rounded-full w-10">
             <mat-icon class="">person</mat-icon>
           </div>

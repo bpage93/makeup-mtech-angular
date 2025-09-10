@@ -1,82 +1,117 @@
 <mat-toolbar color="primary" class="navbar bg-base-100 shadow-lg px-4">
-  <div class="flex-1">
-    <a class="btn text-2xl font-bold">
+  <div class="navbar-start">
+    <!-- START: Mobile Hamburger Menu -->
+    <div class="dropdown">
+      <button mat-icon-button class="btn btn-ghost lg:hidden" tabindex="0" aria-label="Open menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h8m-8 6h16"
+          />
+        </svg>
+      </button>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+      >
+        @for (dash of dashboardItems; track dash.icon) {
+        <li>
+          <a [routerLink]="dash.route">
+            <mat-icon>{{ dash.icon }}</mat-icon> {{ dash.label }}
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
+    <!-- END: Mobile Hamburger Menu -->
+
+    <!-- Logo / App Name section -->
+    <a class="btn btn-ghost text-2xl font-bold ml-2">
       <mat-icon class="mr-2">face</mat-icon>
       Makeup Pro
     </a>
   </div>
 
-  <div class="flex-none hidden lg:flex">
+  <!-- START: Desktop Horizontal Menu -->
+  <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1 font-semibold">
       @for (dash of dashboardItems; track dash.icon) {
       <li>
-        <a class="btn" [routerLink]="dash.route">
+        <a class="btn btn-ghost" [routerLink]="dash.route">
           <mat-icon class="mr-1">{{ dash.icon }}</mat-icon> {{ dash.label }}
         </a>
       </li>
       }
     </ul>
   </div>
+  <!-- END: Desktop Horizontal Menu -->
 
-  <div class="flex justify-center items-center">
+  <div class="navbar-end">
+    <!-- Shopping Cart Icon -->
     <div class="indicator mr-2">
       <span class="indicator-item badge badge-secondary">{{ cartItemCount() }}</span>
       <button class="btn btn-ghost btn-circle">
         <mat-icon>shopping_cart</mat-icon>
       </button>
     </div>
-    <div class="flex-none">
-      <div class="dropdown dropdown-end">
-        <button
-          mat-icon-button
-          class="tooltip tooltip-bottom mx-2"
-          data-tip="Theme"
-          aria-label="Theme switcher"
-          tabindex="0"
-        >
-          <mat-icon>palette</mat-icon>
-        </button>
-        <ul
-          tabindex="0"
-          class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-        >
-          @for(theme of themes; track theme) {
-          <li (click)="changeTheme(theme)">
-            <a>{{ theme | titlecase }}</a>
-          </li>
-          }
-        </ul>
-      </div>
+
+    <!-- Theme switcher dropdown -->
+    <div class="dropdown dropdown-end">
+      <button
+        mat-icon-button
+        class="btn btn-ghost btn-circle mx-2"
+        data-tip="Theme"
+        aria-label="Theme switcher"
+        tabindex="0"
+      >
+        <mat-icon>palette</mat-icon>
+      </button>
+      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+        @for(theme of themes; track theme) {
+        <li (click)="changeTheme(theme)">
+          <a>{{ theme | titlecase }}</a>
+        </li>
+        }
+      </ul>
     </div>
 
-    <div class="flex items-center">
+    <!-- User account menu -->
+    <div class="dropdown dropdown-end">
       <button
-        class="tooltip tooltip-bottom"
+        class="btn btn-ghost btn-circle avatar"
         data-tip="User account"
-        mat-icon-button
-        [matMenuTriggerFor]="userMenu"
         aria-label="User account menu"
+        tabindex="0"
       >
-        <div class="avatar avatar-placeholder !flex !items-center !justify-center">
-          <div class="bg-neutral text-neutral-content rounded-full w-10">
-            <mat-icon class="">person</mat-icon>
-          </div>
+        <div
+          class="w-10 rounded-full bg-neutral text-neutral-content flex items-center justify-center"
+        >
+          <mat-icon>person</mat-icon>
         </div>
       </button>
-      <mat-menu #userMenu="matMenu" class="bg-base-100 rounded-box shadow-lg mt-2">
-        <ul class="menu p-2 w-56">
-          <li class="menu-title"><span>Anna Smith</span></li>
-          @for (item of userMenuItems; track item.icon) { @switch (item.type) { @case ('link') {
-          <li>
-            <a
-              ><mat-icon>{{ item.icon }}</mat-icon> {{ item.label }}</a
-            >
-          </li>
-          } @case ('divider') {
-          <div class="divider my-1"></div>
-          } } }
-        </ul>
-      </mat-menu>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+      >
+        <li class="menu-title"><span>Anna Smith</span></li>
+        @for (item of userMenuItems; track item.icon) { @switch (item.type) { @case ('link') {
+        <li>
+          <a
+            ><mat-icon>{{ item.icon }}</mat-icon> {{ item.label }}</a
+          >
+        </li>
+        } @case ('divider') {
+        <li class="menu-title"></li>
+        } } }
+      </ul>
     </div>
   </div>
 </mat-toolbar>

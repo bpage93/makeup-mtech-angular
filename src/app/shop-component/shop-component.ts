@@ -1,8 +1,10 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MakeupService, CategoryDisplayData } from '../Service/makeupService';
+import { ProductCategoryCardComponent } from '../product-category-card/product-category-card';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
+
 
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,7 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule, 
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    ProductCategoryCardComponent
   ],
   templateUrl: './shop-component.html',
   styleUrl: './shop-component.css'

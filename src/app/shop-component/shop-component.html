@@ -7,14 +7,11 @@
   <!-- The Clean & Professional DaisyUI Search Bar -->
   <div class="w-full max-w-md mx-auto mb-10">
     <div class="form-control">
-      <label class="input input-bordered flex items-center gap-3 shadow-sm focus-within:shadow-md transition-shadow duration-300">
+      <label
+        class="input input-bordered flex items-center gap-3 shadow-sm focus-within:shadow-md transition-shadow duration-300"
+      >
         <mat-icon class="text-base-content/40">search</mat-icon>
-        <input 
-          type="text" 
-          class="grow" 
-          placeholder="e.g., Lipstick"
-          [(ngModel)]="searchTerm"
-        />
+        <input type="text" class="grow" placeholder="e.g., Lipstick" [(ngModel)]="searchTerm" />
       </label>
     </div>
   </div>
@@ -24,29 +21,16 @@
     The @if block handles the display logic.
   -->
   @if (filteredProductTypes().length > 0) {
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      
-      <!-- The @for loop iterates over the reactively filtered list -->
-      @for (productType of filteredProductTypes(); track productType.name) {
-        <div class="card image-full bg-base-100 shadow-md rounded-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 before:content-[''] before:absolute before:inset-0 before:bg-black before:opacity-30 before:z-10">
-          <figure class="h-40">
-            <img [src]="productType.imageUrl" [alt]="productType.name" class="w-full h-full object-cover" />
-          </figure>
-          <div class="card-body justify-end z-20">
-            <h2 class="card-title text-white">{{ productType.name | titlecase }}</h2>
-            <p class="text-white/80">Browse our collection of {{ productType.name.toLowerCase() }}.</p>
-            <div class="card-actions justify-end mt-4">
-              <button class="btn btn-primary btn-sm shadow hover:shadow-lg transition-all">View All</button>
-            </div>
-          </div>
-        </div>
-      }
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- The @for loop iterates over the reactively filtered list -->
+    @for (productType of filteredProductTypes(); track productType.name) {
+    <app-product-category-card [category]="productType"></app-product-category-card>
+    }
+  </div>
   } @else {
-    <!-- This @else block displays a helpful message if the search returns no results -->
-    <div class="text-center py-10">
-      <p class="text-xl">No categories found for "{{ searchTerm() }}"</p>
-    </div>
+  <!-- This @else block displays a helpful message if the search returns no results -->
+  <div class="text-center py-10">
+    <p class="text-xl">No categories found for "{{ searchTerm() }}"</p>
+  </div>
   }
-
 </div>

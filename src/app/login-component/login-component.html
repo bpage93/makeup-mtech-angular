@@ -1,6 +1,5 @@
 <div class="hero min-h-screen bg-base-200">
   <div class="hero-content flex-col lg:flex-row-reverse w-full max-w-5xl">
-    <!-- Right Side: Decorative Text -->
     <div class="text-center lg:text-left lg:pl-12">
       <h1 class="text-5xl font-bold">Login now!</h1>
       <p class="py-6">
@@ -9,12 +8,10 @@
       </p>
     </div>
 
-    <!-- Left Side: Login Form Card (DaisyUI) -->
     <div class="card w-full max-w-sm shrink-0 shadow-2xl bg-base-100">
       <form class="card-body" [formGroup]="loginForm" (ngSubmit)="login()">
         <h2 class="text-2xl font-bold text-center mb-4">Enter Your Credentials</h2>
 
-        <!-- Email Input -->
         <div class="form-control">
           <label class="label">
             <span class="label-text">Email</span>
@@ -39,7 +36,6 @@
           }
         </div>
 
-        <!-- Password Input -->
         <div class="form-control mt-4">
           <label class="label">
             <span class="label-text">Password</span>
@@ -63,11 +59,18 @@
           }
         </div>
 
-        <!-- Submit Button -->
         <div class="form-control mt-6">
           <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">
             Login
           </button>
+        </div>
+
+        <!-- START: Added Signup Link -->
+        <div class="text-center mt-4">
+          <p class="text-sm">
+            Don't have an account?
+            <a routerLink="/signup" class="link link-primary">Sign up</a>
+          </p>
         </div>
       </form>
     </div>

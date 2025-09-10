@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MakeupService } from '../Service/makeupService';
 import { MakeupProduct } from '../interface/makeup-product';
+import { CartService } from '../Service/cart-service';
 import { Observable, switchMap, map } from 'rxjs';
 
 @Component({
@@ -15,6 +16,7 @@ import { Observable, switchMap, map } from 'rxjs';
 export class ProductListComponent {
   private route = inject(ActivatedRoute);
   private makeupService = inject(MakeupService);
+  private cartService = inject(CartService); 
 
   public products$: Observable<MakeupProduct[]>;
   public categoryName$: Observable<string>;
@@ -30,5 +32,10 @@ export class ProductListComponent {
     this.products$ = this.categoryName$.pipe(
       switchMap(categoryName => this.makeupService.getProductsForCategory(categoryName))
     );
+  }
+
+  addToCart(product: MakeupProduct): void {
+    this.cartService.addItem(product);
+    alert(`${product.name} has been added to your cart.`);
   }
 }

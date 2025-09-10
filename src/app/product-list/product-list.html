@@ -23,7 +23,7 @@
                 <p class="text-sm text-base-content/70">{{ product.brand | titlecase }}</p>
                 <div class="card-actions justify-between items-center mt-4">
                   <span class="text-2xl font-semibold">{{ product.price_sign }}{{ product.price }}</span>
-                  <button class="btn btn-primary">Add to Cart</button>
+                  <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
                 </div>
               </div>
             </div>

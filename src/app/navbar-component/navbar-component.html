@@ -1,5 +1,4 @@
 <mat-toolbar color="primary" class="navbar bg-base-100 shadow-lg px-4">
-  <!-- Logo / App Name section -->
   <div class="flex-1">
     <a class="btn text-2xl font-bold">
       <mat-icon class="mr-2">face</mat-icon>
@@ -11,15 +10,21 @@
     <ul class="menu menu-horizontal px-1 font-semibold">
       @for (dash of dashboardItems; track dash.icon) {
       <li>
-        <a class="btn" [routerLink]="dash.route"
-          ><mat-icon class="mr-1">{{ dash.icon }}</mat-icon> {{ dash.label }}
+        <a class="btn" [routerLink]="dash.route">
+          <mat-icon class="mr-1">{{ dash.icon }}</mat-icon> {{ dash.label }}
         </a>
       </li>
       }
     </ul>
   </div>
+
   <div class="flex justify-center items-center">
-    <!-- Theme switcher dropdown -->
+    <div class="indicator mr-2">
+      <span class="indicator-item badge badge-secondary">{{ cartItemCount() }}</span>
+      <button class="btn btn-ghost btn-circle">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </div>
     <div class="flex-none">
       <div class="dropdown dropdown-end">
         <button
@@ -35,7 +40,6 @@
           tabindex="0"
           class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <!-- This list is now generated dynamically with a @for loop -->
           @for(theme of themes; track theme) {
           <li (click)="changeTheme(theme)">
             <a>{{ theme | titlecase }}</a>
@@ -45,7 +49,6 @@
       </div>
     </div>
 
-    <!-- User account menu -->
     <div class="flex items-center">
       <button
         class="tooltip tooltip-bottom"
@@ -63,7 +66,6 @@
       <mat-menu #userMenu="matMenu" class="bg-base-100 rounded-box shadow-lg mt-2">
         <ul class="menu p-2 w-56">
           <li class="menu-title"><span>Anna Smith</span></li>
-
           @for (item of userMenuItems; track item.icon) { @switch (item.type) { @case ('link') {
           <li>
             <a

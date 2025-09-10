@@ -6,6 +6,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { TitleCasePipe } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 import { themeChange } from 'theme-change';
+import { toSignal } from '@angular/core/rxjs-interop'; 
+import { CartService } from '../Service/cart-service';
+import { inject } from '@angular/core';
+
 
 @Component({
   selector: 'app-navbar-component',
@@ -23,6 +27,10 @@ import { themeChange } from 'theme-change';
   styleUrl: './navbar-component.css',
 })
 export class NavbarComponent {
+private cartService = inject(CartService);
+
+public cartItemCount = toSignal(this.cartService.cartCount$, { initialValue: 0 });
+
   userMenuItems = [
     { type: 'link', label: 'Profile', icon: 'person' },
     { type: 'link', label: 'Settings', icon: 'settings' },

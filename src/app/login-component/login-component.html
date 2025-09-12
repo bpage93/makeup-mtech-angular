@@ -1,78 +1,30 @@
-<div class="hero min-h-screen bg-base-200">
-  <div class="hero-content flex-col lg:flex-row-reverse w-full max-w-5xl">
-    <div class="text-center lg:text-left lg:pl-12">
-      <h1 class="text-5xl font-bold">Login now!</h1>
-      <p class="py-6">
-        Unlock your personalized shopping experience. Discover the latest trends, save your
-        favorites, and enjoy a seamless checkout process with Makeup Pro.
-      </p>
+<div class="grid grid-cols-1 lg:grid-cols-2 min-h-screen bg-base-200">
+      <!-- Left side: Image -->
+      <div class="hidden lg:block bg-cover bg-center" style="background-image: url('https://placehold.co/1200x1200/a5b4fc/6366f1?text=Makeup\\nPro');"></div>
+      
+      <!-- Right side: Form -->
+      <div class="flex items-center justify-center p-8">
+        <div class="card w-full max-w-md bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title text-4xl font-bold mb-4 justify-center">Welcome Back</h2>
+            <!-- UPDATED: ngSubmit now calls onLogin() -->
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+              <div class="form-control">
+                <label class="label"><span class="label-text">Email</span></label>
+                <input type="email" formControlName="email" placeholder="user@example.com" class="input input-bordered w-full" />
+              </div>
+              <div class="form-control mt-4">
+                <label class="label"><span class="label-text">Password</span></label>
+                <input type="password" formControlName="password" class="input input-bordered w-full" />
+              </div>
+              <div class="form-control mt-6">
+                <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+              </div>
+              <div class="text-center mt-4">
+                <p class="text-sm">Don't have an account? <a routerLink="/signup" class="link link-primary">Sign up</a></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="card w-full max-w-sm shrink-0 shadow-2xl bg-base-100">
-      <form class="card-body" [formGroup]="loginForm" (ngSubmit)="login()">
-        <h2 class="text-2xl font-bold text-center mb-4">Enter Your Credentials</h2>
-
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Email</span>
-          </label>
-          <label class="input input-bordered flex items-center gap-2">
-            <mat-icon>email</mat-icon>
-            <input
-              type="email"
-              class="grow"
-              placeholder="user@example.com"
-              formControlName="email"
-            />
-          </label>
-          @if (loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')) {
-          <label class="label">
-            <span class="label-text-alt text-error">Email is required</span>
-          </label>
-          } @if (loginForm.get('email')?.touched && loginForm.get('email')?.hasError('email')) {
-          <label class="label">
-            <span class="label-text-alt text-error">Please enter a valid email</span>
-          </label>
-          }
-        </div>
-
-        <div class="form-control mt-4">
-          <label class="label">
-            <span class="label-text">Password</span>
-          </label>
-          <label class="input input-bordered flex items-center gap-2">
-            <mat-icon>lock</mat-icon>
-            <input
-              [type]="hidePassword ? 'password' : 'text'"
-              class="grow"
-              formControlName="password"
-            />
-            <button mat-icon-button (click)="hidePassword = !hidePassword" type="button">
-              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-            </button>
-          </label>
-          @if (loginForm.get('password')?.touched &&
-          loginForm.get('password')?.hasError('required')) {
-          <label class="label">
-            <span class="label-text-alt text-error">Password is required</span>
-          </label>
-          }
-        </div>
-
-        <div class="form-control mt-6">
-          <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">
-            Login
-          </button>
-        </div>
-
-        <!-- START: Added Signup Link -->
-        <div class="text-center mt-4">
-          <p class="text-sm">
-            Don't have an account?
-            <a routerLink="/signup" class="link link-primary">Sign up</a>
-          </p>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>

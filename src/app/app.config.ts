@@ -3,15 +3,9 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+// import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
-
-
-// --- FIREBASE IMPORTS ---
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,16 +16,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
 
     // Enables Angular animations
-    provideAnimationsAsync(),
+    // provideAnimations(),
 
-    // --- FIREBASE PROVIDERS ---
-    // Initializes the Firebase app using your environment variables
-    
-
-    // Provides the Firebase Authentication service
-    provideAuth(() => getAuth()),
-
-    // Provides the Firestore Database service
-    provideFirestore(() => getFirestore()),
+    // Firebase providers removed
   ],
 };

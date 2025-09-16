@@ -5,11 +5,12 @@ import { MakeupService } from '../Service/makeupService';
 import { MakeupProduct } from '../interface/makeup-product';
 import { CartService } from '../Service/cart-service';
 import { Observable, switchMap, map } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, AsyncPipe],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css'
 })

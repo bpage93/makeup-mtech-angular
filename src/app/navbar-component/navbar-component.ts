@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { TitleCasePipe } from '@angular/common';
-import { RouterLink, RouterModule } from '@angular/router';
+import { RouterLink, RouterModule, Router } from '@angular/router';
 import { themeChange } from 'theme-change';
-import { toSignal } from '@angular/core/rxjs-interop'; 
+import { toSignal } from '@angular/core/rxjs-interop';
 import { CartService } from '../Service/cart-service';
 import { inject } from '@angular/core';
-
 
 @Component({
   selector: 'app-navbar-component',
@@ -22,14 +22,16 @@ import { inject } from '@angular/core';
     TitleCasePipe,
     RouterLink,
     RouterModule,
+    CommonModule,
   ],
   templateUrl: './navbar-component.html',
   styleUrl: './navbar-component.css',
 })
 export class NavbarComponent {
-private cartService = inject(CartService);
+  private cartService = inject(CartService);
+  private router = inject(Router);
 
-public cartItemCount = toSignal(this.cartService.cartCount$, { initialValue: 0 });
+  public cartItemCount = toSignal(this.cartService.cartCount$, { initialValue: 0 });
 
   userMenuItems = [
     { type: 'link', label: 'Profile', icon: 'person' },
@@ -82,5 +84,9 @@ public cartItemCount = toSignal(this.cartService.cartCount$, { initialValue: 0 }
       // Set the 'data-theme' attribute to the chosen theme
       html.setAttribute('data-theme', theme);
     }
+  }
+  public logout(): void {
+    console.log('Logging out...');
+    this.router.navigate(['/login']);
   }
 }

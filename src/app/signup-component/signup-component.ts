@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import anime from 'animejs/lib/anime.es.js';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
     RouterLink
   ],
   templateUrl: './signup-component.html',
-
+  styleUrls: ['./signup-component.css']
 })
 export class SignupComponent {
   private fb = inject(FormBuilder);

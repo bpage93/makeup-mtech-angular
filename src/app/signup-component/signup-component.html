@@ -1,78 +1,69 @@
-<div class="hero min-h-screen bg-base-200">
-  <div class="hero-content flex-col lg:flex-row w-full max-w-5xl">
-    <!-- Left Side: Decorative Text -->
-    <div class="text-center lg:text-left lg:pr-12">
-      <h1 class="text-5xl font-bold">Join Us!</h1>
-      <p class="py-6">
-        Create your account to start your beauty journey. Get access to exclusive offers,
-        personalized recommendations, and a world of premium makeup products.
-      </p>
-    </div>
+<div class="grid grid-cols-1 lg:grid-cols-2 min-h-screen bg-base-200">
+  <div
+    #imagePanel
+    class="hidden lg:block bg-cover bg-center"
+    style="background-image: url('https://placehold.co/1200x1200/667eea/5a67d8?text=Join\\nUs!')"
+  ></div>
 
-    <!-- Right Side: Signup Form Card (DaisyUI) -->
-    <div class="card w-full max-w-sm shrink-0 shadow-2xl bg-base-100">
-      <form class="card-body" [formGroup]="signupForm" (ngSubmit)="signup()">
-        <h2 class="text-2xl font-bold text-center mb-4">Create Your Account</h2>
-
-        <div class="grid grid-cols-2 gap-4">
-          <div class="form-control">
-            <label class="label"><span class="label-text">First Name</span></label>
-            <input
-              type="text"
-              placeholder="Anna"
-              class="input input-bordered w-full"
-              formControlName="firstName"
-            />
+  <div class="flex items-center justify-center p-8">
+    <div class="card w-full max-w-md bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h2 class="card-title text-4xl font-bold mb-4 justify-center">
+          <span class="animated-text">J</span><span class="animated-text">o</span
+          ><span class="animated-text">i</span><span class="animated-text">n</span>
+          <span class="animated-text">U</span><span class="animated-text">s</span
+          ><span class="animated-text">!</span>
+        </h2>
+        <form [formGroup]="signupForm" (ngSubmit)="signup()">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-control">
+              <label class="label"><span class="label-text">First Name</span></label>
+              <input
+                type="text"
+                formControlName="firstName"
+                placeholder="Anna"
+                class="input input-bordered w-full"
+              />
+            </div>
+            <div class="form-control">
+              <label class="label"><span class="label-text">Last Name</span></label>
+              <input
+                type="text"
+                formControlName="lastName"
+                placeholder="Smith"
+                class="input input-bordered w-full"
+              />
+            </div>
           </div>
-          <div class="form-control">
-            <label class="label"><span class="label-text">Last Name</span></label>
-            <input
-              type="text"
-              placeholder="Smith"
-              class="input input-bordered w-full"
-              formControlName="lastName"
-            />
-          </div>
-        </div>
 
-        <div class="form-control mt-4">
-          <label class="label"><span class="label-text">Email</span></label>
-          <label class="input input-bordered flex items-center gap-2">
-            <mat-icon>email</mat-icon>
+          <div class="form-control mt-4">
+            <label class="label"><span class="label-text">Email</span></label>
             <input
               type="email"
-              class="grow"
-              placeholder="user@example.com"
               formControlName="email"
+              placeholder="user@example.com"
+              class="input input-bordered w-full"
             />
-          </label>
-        </div>
+          </div>
 
-        <div class="form-control mt-4">
-          <label class="label"><span class="label-text">Password</span></label>
-          <label class="input input-bordered flex items-center gap-2">
-            <mat-icon>lock</mat-icon>
-            <input
-              [type]="hidePassword ? 'password' : 'text'"
-              class="grow"
-              formControlName="password"
-            />
-          </label>
-        </div>
+          <div class="form-control mt-4">
+            <label class="label"><span class="label-text">Password</span></label>
+            <input type="password" formControlName="password" class="input input-bordered w-full" />
+          </div>
 
-        <div class="form-control mt-6">
-          <button class="btn btn-primary" type="submit" [disabled]="signupForm.invalid">
-            Sign Up
-          </button>
-        </div>
+          <div class="form-control mt-6">
+            <button class="btn btn-primary" type="submit" [disabled]="signupForm.invalid">
+              Sign Up
+            </button>
+          </div>
 
-        <div class="text-center mt-4">
-          <p class="text-sm">
-            Already have an account?
-            <a routerLink="/login" class="link link-primary">Log in</a>
-          </p>
-        </div>
-      </form>
+          <div class="text-center mt-4">
+            <p class="text-sm">
+              Already have an account? <a routerLink="/login" class="link link-primary">Log in</a>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

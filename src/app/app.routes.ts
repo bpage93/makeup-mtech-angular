@@ -1,32 +1,38 @@
 import { Routes } from '@angular/router';
+import { DashboardComponent } from '../app/dashboard-component/dashboard-component';
+import { ShopComponent } from '../app/shop-component/shop-component';
+import { CheckoutComponent } from './checkout-component/chechout-component';
+import { ProductListComponent } from '../app/product-list/product-list';
+import { LoginComponent } from './login-component/login-component';
+import { SignupComponent } from './signup-component/signup-component';
 
 export const routes: Routes = [
   // Routes for login and signup
   {
     path: 'login',
-    loadComponent: () => import('./login-component/login-component').then(m => m.LoginComponent),
+    component: LoginComponent,
   },
   {
     path: 'signup',
-    loadComponent: () => import('./signup-component/signup-component').then(m => m.SignupComponent),
+    component: SignupComponent,
   },
 
   // Public application routes
   {
     path: 'dashboard',
-    loadComponent: () => import('../app/dashboard-component/dashboard-component').then(m => m.DashboardComponent),
+    component: DashboardComponent,
   },
   {
     path: 'shop',
-    loadComponent: () => import('../app/shop-component/shop-component').then(m => m.ShopComponent),
+    component: ShopComponent,
   },
   {
     path: 'checkout',
-    loadComponent: () => import('./checkout-component/chechout-component').then(m => m.CheckoutComponent),
+    component: CheckoutComponent,
   },
   {
     path: 'category/:categoryName',
-    loadComponent: () => import('../app/product-list/product-list').then(m => m.ProductListComponent),
+    component: ProductListComponent,
   },
 
   // Default and wildcard routes

@@ -33,6 +33,8 @@ export class LoginComponent implements AfterViewInit {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService); 
 
+  errorMessage: string | null = null;
+
   constructor(private elementRef: ElementRef) {}
 
   // Use @ViewChild to get a reference to the element with #imagePanel
@@ -80,28 +82,23 @@ export class LoginComponent implements AfterViewInit {
     }
   }
 
- 
-// (Removed duplicate and misplaced block; animation logic is already handled in ngAfterViewInit)
-
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
 
-  // This method will be called when the form is submitted
   async onLogin() {
+    this.errorMessage = null;
     if (this.loginForm.invalid) {
-      return; // Stop if the form is invalid
+      return;
     }
 
     const { email, password } = this.loginForm.value;
     try {
-      // Call the login method from the AuthService
       await this.authService.login(email, password);
-      // The service will handle redirection on success
-    } catch (error) {
-      // You can add user-friendly error handling here, like a toast notification
-      console.error('Login failed in component:', error);
+    } catch (error: any) {
+      this.errorMessage = error.message;
+      console.error('Login failed:', error);
     }
   }
 }

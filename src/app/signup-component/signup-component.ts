@@ -28,8 +28,7 @@ export class SignupComponent {
   errorMessage: string | null = null;
 
   signupForm: FormGroup = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
+    displayName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   });
@@ -40,9 +39,9 @@ export class SignupComponent {
       return;
     }
 
-    const { email, password } = this.signupForm.value;
+    const { displayName, email, password } = this.signupForm.value;
     try {
-      await this.authService.signup(email, password);
+      await this.authService.signup(displayName, email, password);
     } catch (error: any) {
       this.errorMessage = error.message;
       console.error('Signup failed:', error);

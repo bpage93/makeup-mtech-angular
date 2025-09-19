@@ -15,25 +15,14 @@
           ><span class="animated-text">!</span>
         </h2>
         <form [formGroup]="signupForm" (ngSubmit)="signup()">
-          <div class="grid grid-cols-2 gap-4">
-            <div class="form-control">
-              <label class="label"><span class="label-text">First Name</span></label>
-              <input
-                type="text"
-                formControlName="firstName"
-                placeholder="Anna"
-                class="input input-bordered w-full"
-              />
-            </div>
-            <div class="form-control">
-              <label class="label"><span class="label-text">Last Name</span></label>
-              <input
-                type="text"
-                formControlName="lastName"
-                placeholder="Smith"
-                class="input input-bordered w-full"
-              />
-            </div>
+          <div class="form-control">
+            <label class="label"><span class="label-text">Display Name</span></label>
+            <input
+              type="text"
+              formControlName="displayName"
+              placeholder="Your Name"
+              class="input input-bordered w-full"
+            />
           </div>
 
           <div class="form-control mt-4">

@@ -6,6 +6,7 @@ import { Auth,
   signOut, 
   GoogleAuthProvider, 
   signInWithPopup} from '@angular/fire/auth';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ import { Auth,
 export class AuthService {
   private auth: Auth = inject(Auth);
   private router: Router = inject(Router);
+  private firestore: Firestore = inject(Firestore);
 
   async login(email: string, password: string): Promise<any> {
     try {
@@ -28,6 +30,13 @@ export class AuthService {
     try {
       const provider = new GoogleAuthProvider();
       const userCredential = await signInWithPopup(this.auth, provider);
+      const user = userCredential.user;
+      const userRef = doc(this.firestore, `users/${user.uid}`);
+      await setDoc(userRef, { 
+        uid: user.uid, 
+        email: user.email, 
+        displayName: user.displayName 
+      });
       this.router.navigate(['/dashboard']);
       return userCredential;
     } catch (error) {
@@ -35,9 +44,16 @@ export class AuthService {
     }
   }
 
-  async signup(email: string, password: string): Promise<any> {
+  async signup(displayName: string, email: string, password: string): Promise<any> {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+      const user = userCredential.user;
+      const userRef = doc(this.firestore, `users/${user.uid}`);
+      await setDoc(userRef, { 
+        uid: user.uid, 
+        email: user.email, 
+        displayName 
+      });
       this.router.navigate(['/dashboard']);
       return userCredential;
     } catch (error) {

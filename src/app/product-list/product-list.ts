@@ -1,38 +1,31 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MakeupService } from '../Service/makeupService';
 import { MakeupProduct } from '../interface/makeup-product';
 import { CartService } from '../Service/cart-service';
-import { Observable, switchMap, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, AsyncPipe],
+  imports: [CommonModule, AsyncPipe, RouterModule],
   templateUrl: './product-list.html',
-  styleUrl: './product-list.css'
+  styleUrls: ['./product-list.css']
 })
-export class ProductListComponent {
-  private route = inject(ActivatedRoute);
+export class ProductListComponent implements OnChanges {
+  @Input() categoryName!: string;
+
   private makeupService = inject(MakeupService);
   private cartService = inject(CartService); 
 
-  public products$: Observable<MakeupProduct[]>;
-  public categoryName$: Observable<string>;
+  public products$!: Observable<MakeupProduct[]>;
 
-  constructor() {
-    // Create an observable stream for the category name from the URL parameter
-    this.categoryName$ = this.route.paramMap.pipe(
-      map(params => params.get('categoryName') || '')
-    );
-
-    // Create a stream for the products.
-    // Use switchMap to switch to a new observable (the product list) whenever the category name changes.
-    this.products$ = this.categoryName$.pipe(
-      switchMap(categoryName => this.makeupService.getProductsForCategory(categoryName))
-    );
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['categoryName']) {
+      this.products$ = this.makeupService.getProductsForCategory(this.categoryName);
+    }
   }
 
   addToCart(product: MakeupProduct): void {

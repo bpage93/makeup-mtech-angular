@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { Auth, 
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
-  signOut } from '@angular/fire/auth';
+  signOut, 
+  GoogleAuthProvider, 
+  signInWithPopup} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +17,17 @@ export class AuthService {
   async login(email: string, password: string): Promise<any> {
     try {
       const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      this.router.navigate(['/dashboard']);
+      return userCredential;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async loginWithGoogle(): Promise<any> {
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(this.auth, provider);
       this.router.navigate(['/dashboard']);
       return userCredential;
     } catch (error) {

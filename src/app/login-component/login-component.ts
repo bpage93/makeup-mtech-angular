@@ -101,4 +101,13 @@ export class LoginComponent implements AfterViewInit {
       console.error('Login failed:', error);
     }
   }
+
+  async onGoogleLogin() {
+    try {
+      await this.authService.loginWithGoogle();
+    } catch (error: any) {
+      this.errorMessage = error.message;
+      console.error('Google login failed:', error);
+    }
+  }
 }

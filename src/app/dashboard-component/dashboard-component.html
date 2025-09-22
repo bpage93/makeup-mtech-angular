@@ -15,8 +15,8 @@
             <div class="stat-figure text-primary">
               <mat-icon>attach_money</mat-icon>
             </div>
-            <div class="stat-title">Revenue</div>
-            <div class="stat-value">$31,500</div>
+            <div class="stat-title text-lg sm:text-xl">Revenue</div>
+            <div class="stat-value text-3xl sm:text-4xl">$31,500</div>
             <div class="stat-desc">↗︎ 400 (22%)</div>
           </div>
         </div>
@@ -27,8 +27,8 @@
             <div class="stat-figure text-secondary">
               <mat-icon>group_add</mat-icon>
             </div>
-            <div class="stat-title">New Users</div>
-            <div class="stat-value">1,200</div>
+            <div class="stat-title text-lg sm:text-xl">New Users</div>
+            <div class="stat-value text-3xl sm:text-4xl">1,200</div>
             <div class="stat-desc">↗︎ 90 (14%)</div>
           </div>
         </div>
@@ -39,8 +39,8 @@
             <div class="stat-figure text-accent">
               <mat-icon>shopping_cart</mat-icon>
             </div>
-            <div class="stat-title">New Orders</div>
-            <div class="stat-value">852</div>
+            <div class="stat-title text-lg sm:text-xl">New Orders</div>
+            <div class="stat-value text-3xl sm:text-4xl">852</div>
             <div class="stat-desc">↘︎ 35 (4%)</div>
           </div>
         </div>
@@ -51,8 +51,8 @@
             <div class="stat-figure text-info">
               <mat-icon>pending_actions</mat-icon>
             </div>
-            <div class="stat-title">Pending Tasks</div>
-            <div class="stat-value">15</div>
+            <div class="stat-title text-lg sm:text-xl">Pending Tasks</div>
+            <div class="stat-value text-3xl sm:text-4xl">15</div>
             <div class="stat-desc">2 remaining today</div>
           </div>
         </div>
@@ -75,10 +75,12 @@
             </mat-card-content>
           </mat-card>
 
-          <!-- Recent Orders Table using DaisyUI Table -->
+          <!-- Recent Orders: Responsive Container -->
           <div class="bg-base-100 p-6 rounded-lg shadow-lg">
             <h3 class="text-xl font-bold mb-4">Recent Orders</h3>
-            <div class="overflow-x-auto">
+
+            <!-- Desktop Table -->
+            <div class="hidden md:block overflow-x-auto">
               <table class="table">
                 <thead>
                   <tr>
@@ -110,6 +112,34 @@
                 </tbody>
               </table>
             </div>
+
+            <!-- Mobile List -->
+            <div class="block md:hidden">
+              <ul class="space-y-4">
+                <li class="p-4 bg-base-200 rounded-lg">
+                  <div class="flex justify-between items-center">
+                    <span class="font-bold">Cy Ganderton</span>
+                    <div class="badge badge-success">Shipped</div>
+                  </div>
+                  <p class="text-sm text-base-content/70">Lipstick - Red Velvet</p>
+                </li>
+                <li class="p-4 bg-base-200 rounded-lg">
+                  <div class="flex justify-between items-center">
+                    <span class="font-bold">Hart Lanation</span>
+                    <div class="badge badge-warning">Processing</div>
+                  </div>
+                  <p class="text-sm text-base-content/70">Eyeliner - Midnight</p>
+                </li>
+                <li class="p-4 bg-base-200 rounded-lg">
+                  <div class="flex justify-between items-center">
+                    <span class="font-bold">Brice Swyre</span>
+                    <div class="badge badge-success">Shipped</div>
+                  </div>
+                  <p class="text-sm text-base-content/70">Foundation - Fair</p>
+                </li>
+              </ul>
+            </div>
+
           </div>
         </div>
 

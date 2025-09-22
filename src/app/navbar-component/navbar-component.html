@@ -23,11 +23,11 @@
         class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
       >
         @for (dash of dashboardItems; track dash.icon) {
-        <li>
-          <a [routerLink]="dash.route">
-            <mat-icon>{{ dash.icon }}</mat-icon> {{ dash.label }}
-          </a>
-        </li>
+          <li>
+            <a [routerLink]="dash.route">
+              <mat-icon>{{ dash.icon }}</mat-icon> {{ dash.label }}
+            </a>
+          </li>
         }
       </ul>
     </div>
@@ -44,11 +44,11 @@
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1 font-semibold">
       @for (dash of dashboardItems; track dash.icon) {
-      <li>
-        <a class="btn btn-ghost" [routerLink]="dash.route">
-          <mat-icon class="mr-1">{{ dash.icon }}</mat-icon> {{ dash.label }}
-        </a>
-      </li>
+        <li>
+          <a class="btn btn-ghost" [routerLink]="dash.route">
+            <mat-icon class="mr-1">{{ dash.icon }}</mat-icon> {{ dash.label }}
+          </a>
+        </li>
       }
     </ul>
   </div>
@@ -75,10 +75,10 @@
         <mat-icon>palette</mat-icon>
       </button>
       <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-        @for(theme of themes; track theme) {
-        <li (click)="changeTheme(theme)">
-          <a>{{ theme | titlecase }}</a>
-        </li>
+        @for (theme of themes; track theme) {
+          <li (click)="changeTheme(theme)">
+            <a>{{ theme | titlecase }}</a>
+          </li>
         }
       </ul>
     </div>
@@ -102,23 +102,29 @@
         class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
       >
         <li class="menu-title"><span>Anna Smith</span></li>
-        @for (item of userMenuItems; track item.icon) { @switch (item.type) { @case ('link') { @if
-        (item.label !== 'Logout') {
-        <li>
-          <a
-            ><mat-icon>{{ item.icon }}</mat-icon> {{ item.label }}</a
-          >
-        </li>
-        } @if (item.label === 'Logout') {
-        <li>
-          <a (click)="logout()"
-            ><mat-icon>{{ item.icon }}</mat-icon> {{ item.label }}</a
-          >
-        </li>
-        } } @case ('divider') {
-        <li class="menu-title"></li>
-        } } }
+        @for (item of userMenuItems; track item.icon) {
+          @if (item.type === 'link') {
+            @if (item.label !== 'Logout') {
+              <li>
+          <a>
+            <mat-icon>{{ item.icon }}</mat-icon> {{ item.label }}
+          </a>
+              </li>
+            } @else {
+              <li>
+          <a (click)="logout()">
+            <mat-icon>{{ item.icon }}</mat-icon> {{ item.label }}
+          </a>
+              </li>
+            }
+          }
+          @if (item.type === 'divider') {
+            <li class="menu-title"></li>
+          }
+        }
       </ul>
     </div>
   </div>
 </mat-toolbar>
+
+

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgForOf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -20,9 +20,10 @@ import { inject } from '@angular/core';
     MatIconModule,
     MatMenuModule,
     TitleCasePipe,
-    RouterLink,
-    RouterModule,
     CommonModule,
+    RouterModule,
+    RouterLink,
+  
   ],
   templateUrl: './navbar-component.html',
   styleUrl: './navbar-component.css',

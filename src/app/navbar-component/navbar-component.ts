@@ -10,6 +10,7 @@ import { themeChange } from 'theme-change';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CartService } from '../Service/cart-service';
 import { inject } from '@angular/core';
+import { AuthService } from '../Service/auth.service';
 
 @Component({
   selector: 'app-navbar-component',
@@ -23,7 +24,6 @@ import { inject } from '@angular/core';
     CommonModule,
     RouterModule,
     RouterLink,
-  
   ],
   templateUrl: './navbar-component.html',
   styleUrl: './navbar-component.css',
@@ -31,7 +31,9 @@ import { inject } from '@angular/core';
 export class NavbarComponent {
   private cartService = inject(CartService);
   private router = inject(Router);
+  private authService = inject(AuthService);
 
+  public user$ = this.authService.user$;
   public cartItemCount = toSignal(this.cartService.cartCount$, { initialValue: 0 });
 
   userMenuItems = [

@@ -1,5 +1,6 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../Service/auth.service';
 
 // --- ANGULAR MATERIAL IMPORTS ---
 import { MatCardModule } from '@angular/material/card';
@@ -13,7 +14,7 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  
+
   imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule],
   templateUrl: `./dashboard-component.html`,
 })
@@ -21,6 +22,9 @@ export class DashboardComponent implements AfterViewInit {
   // Get a reference to the canvas element in the template
   @ViewChild('salesChart') private chartRef!: ElementRef;
   private chart!: Chart;
+
+  authService = inject(AuthService);
+  user = this.authService.currentUser;
 
   ngAfterViewInit(): void {
     this.createChart();

@@ -1,33 +1,52 @@
 <div class="grid grid-cols-1 lg:grid-cols-2 min-h-screen bg-base-200">
-  <div #imagePanel class="hidden lg:block bg-cover bg-center" style="background-image: url('https://placehold.co/1200x1200/a5b4fc/6366f1?text=Makeup\\nPro&font=poppins');"></div>
+  <div
+    #imagePanel
+    class="hidden lg:block bg-cover bg-center"
+    style="
+      background-image: url('https://placehold.co/1200x1200/a5b4fc/6366f1?text=Makeup\\nPro&font=poppins');
+    "
+  ></div>
 
   <div class="flex items-center justify-center p-8 bg-amber-100">
     <div class="card w-full max-w-md bg-base-100 shadow-xl">
       <div class="card-body">
-        <h2 class="card-title text-4xl font-bold mb-4 justify-center">
-          <span class="animated-text">W</span><span class="animated-text">e</span><span class="animated-text">l</span><span class="animated-text">c</span><span class="animated-text">o</span><span class="animated-text">m</span><span class="animated-text">e</span>
-          <span class="animated-text">B</span><span class="animated-text">a</span><span class="animated-text">c</span><span class="animated-text">k</span>
+        <h2 class="card-title text-4xl font-bold mb-4 justify-center text-base-content">
+          <span class="animated-text">W</span><span class="animated-text">e</span
+          ><span class="animated-text">l</span><span class="animated-text">c</span
+          ><span class="animated-text">o</span><span class="animated-text">m</span
+          ><span class="animated-text">e</span> <span class="animated-text">B</span
+          ><span class="animated-text">a</span><span class="animated-text">c</span
+          ><span class="animated-text">k</span>
         </h2>
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
           <div class="form-control">
-            <label class="label"><span class="label-text">Email</span></label>
-            <input type="email" formControlName="email" placeholder="user@example.com" class="input input-bordered w-full" />
+            <label class="label"><span class="label-text text-base-content">Email</span></label>
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="user@example.com"
+              class="input input-bordered w-full"
+            />
           </div>
           <div class="form-control mt-4">
-            <label class="label"><span class="label-text">Password</span></label>
+            <label class="label"><span class="label-text text-base-content">Password</span></label>
             <input type="password" formControlName="password" class="input input-bordered w-full" />
           </div>
-          <div *ngIf="errorMessage" class="alert alert-error mt-4">
-            {{ errorMessage }}
-          </div>
+            <ng-container *ngIf="errorMessage">
+              <div class="alert alert-error mt-4">
+                {{ errorMessage }}
+              </div>
+            </ng-container>
           <div class="form-control mt-6">
-            <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+            <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">
+              Login
+            </button>
           </div>
           <div class="form-control mt-4">
             <button class="btn btn-secondary" (click)="onGoogleLogin()">Login with Google</button>
           </div>
           <div class="text-center mt-4">
-            <p class="text-sm">
+            <p class="text-sm text-base-content">
               Don't have an account? <a routerLink="/signup" class="link link-primary">Sign up</a>
             </p>
           </div>

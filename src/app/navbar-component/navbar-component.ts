@@ -11,7 +11,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { CartService } from '../Service/cart-service';
 import { AuthService } from '../Service/auth.service';
 import { inject } from '@angular/core';
-import { AuthService } from '../Service/auth.service';
+
 
 @Component({
   selector: 'app-navbar-component',
@@ -34,11 +34,7 @@ export class NavbarComponent {
   private router = inject(Router);
   private authService = inject(AuthService);
 
-<<<<<<< HEAD
-  public user$ = this.authService.user$;
-=======
   public user = toSignal(this.authService.user$);
->>>>>>> main
   public cartItemCount = toSignal(this.cartService.cartCount$, { initialValue: 0 });
 
   userMenuItems = [

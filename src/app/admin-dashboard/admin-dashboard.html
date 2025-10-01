@@ -1,0 +1,85 @@
+<div class="p-6 max-w-4xl mx-auto">
+  <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+
+  <!-- User Management Card -->
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">User Role Management</h2>
+      <p>Find a user by their username to manage their roles.</p>
+
+      <!-- Search Form -->
+      <form
+        [formGroup]="searchForm"
+        (ngSubmit)="onSearch()"
+        class="flex flex-col sm:flex-row items-start gap-4 mt-4"
+      >
+        <div class="form-control w-full flex-grow">
+          <label class="label">
+            <span class="label-text">Username</span>
+          </label>
+          <input
+            type="text"
+            formControlName="username"
+            placeholder="example_user"
+            class="input input-bordered w-full"
+          />
+          @if (searchForm.get('username')?.touched &&
+          searchForm.get('username')?.hasError('required')) {
+          <label class="label">
+            <span class="label-text-alt text-error">Username is required.</span>
+          </label>
+          }
+        </div>
+        <button
+          class="btn btn-primary mt-0 sm:mt-9"
+          type="submit"
+          [disabled]="isLoading() || searchForm.invalid"
+        >
+          <mat-icon>search</mat-icon>
+          Search
+        </button>
+      </form>
+
+      <!-- Loading Spinner -->
+      @if (isLoading()) {
+      <div class="flex justify-center p-8">
+        <span class="loading loading-spinner loading-lg"></span>
+      </div>
+      }
+
+      <!-- Search Result Message -->
+      @if (searchMessage()) {
+      <p class="text-center text-base-content/70 mt-4">{{ searchMessage() }}</p>
+      }
+
+      <!-- Found User Details -->
+      @if (foundUser(); as user) {
+      <div class="mt-6 border border-base-300 rounded-lg p-4">
+        <h3 class="text-xl font-semibold">{{ user.displayName || 'No Display Name' }}</h3>
+        <p class="text-base-content/80">{{ user.email }}</p>
+        <p class="text-sm text-base-content/60">UID: {{ user.uid }}</p>
+
+        <div class="mt-4 flex items-center gap-4">
+          @if (user.isAdmin) {
+          <div class="flex items-center gap-2 text-success font-semibold">
+            <mat-icon>verified_user</mat-icon>
+            <span>Is an Admin</span>
+          </div>
+          } @else {
+          <button class="btn btn-accent btn-sm" (click)="onMakeAdmin()" [disabled]="isLoading()">
+            Make Admin
+          </button>
+          }
+        </div>
+
+        <!-- Grant Role Message -->
+        @if (grantMessage()) {
+        <p class="mt-4 text-sm" [class.text-error]="grantMessage().startsWith('Failed')">
+          {{ grantMessage() }}
+        </p>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</div>

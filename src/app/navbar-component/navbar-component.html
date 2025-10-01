@@ -124,3 +124,13 @@
     </div>
   </div>
 </mat-toolbar>
+
+<!-- In your navbar menu -->
+@if (user() && authService.userRoles()['admin']) {
+<li>
+  <a routerLink="/admin">
+    <mat-icon>admin_panel_settings</mat-icon>
+    Admin Dashboard
+  </a>
+</li>
+}

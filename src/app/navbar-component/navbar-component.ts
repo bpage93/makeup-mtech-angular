@@ -32,7 +32,7 @@ import { inject } from '@angular/core';
 export class NavbarComponent {
   private cartService = inject(CartService);
   private router = inject(Router);
-  private authService = inject(AuthService);
+  authService = inject(AuthService);
 
   public user = toSignal(this.authService.user$);
   public cartItemCount = toSignal(this.cartService.cartCount$, { initialValue: 0 });

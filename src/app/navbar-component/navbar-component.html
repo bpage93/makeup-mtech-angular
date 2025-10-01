@@ -102,16 +102,7 @@
         class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
       >
         <li class="menu-title">
-<<<<<<< HEAD
-          <ng-container *ngIf="user$ | async as user; else myAccount">
-            <span>{{ user.displayName || user.email }}</span>
-          </ng-container>
-          <ng-template #myAccount>
-            <span>My Account</span>
-          </ng-template>
-=======
           <span>{{ user()?.displayName || user()?.email || 'Guest' }}</span>
->>>>>>> main
         </li>
         @for (item of userMenuItems; track item.icon) { @if (item.type === 'link') { @if (item.label
         !== 'Logout') {

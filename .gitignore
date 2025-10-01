@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 
 envrionment.ts
+/functions/service-account-key.json

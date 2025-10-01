@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import { Auth, authState } from '@angular/fire/auth';
 import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from './Service/auth.service';
 import { map } from 'rxjs/operators';
 
 /**
@@ -44,4 +45,22 @@ export const redirectLoggedInGuard: CanActivateFn = (route, state) => {
       }
     })
   );
+};
+
+/**
+ * A guard that allows access only to admin users.
+ * If the user is not an admin, they are redirected to the home page.
+ */
+export const adminGuard: CanActivateFn = () => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  // Use the userRoles signal
+  if (authService.userRoles()['admin']) {
+    return true;
+  } else {
+    // Redirect to home page if not an admin
+    router.navigate(['/']);
+    return false;
+  }
 };

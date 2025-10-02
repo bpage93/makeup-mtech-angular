@@ -15,10 +15,11 @@ import {
   sendEmailVerification,
 } from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
-import { getDownloadURL, ref, Storage, uploadBytes } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
-
 import { toObservable } from '@angular/core/rxjs-interop';
+
+interface UserRoles {
+  [key: string]: boolean;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -26,16 +27,21 @@ import { toObservable } from '@angular/core/rxjs-interop';
 export class AuthService {
   auth: Auth = inject(Auth);
   router: Router = inject(Router);
-  private storage = inject(Storage);
+  private firestore: Firestore = inject(Firestore);
+
   currentUser = signal<User | null>(null);
+  userRoles = signal<UserRoles>({});
   user$ = toObservable(this.currentUser);
 
   constructor() {
-    onAuthStateChanged(this.auth, (user) => {
+    onAuthStateChanged(this.auth, async (user) => {
       if (user) {
+        const idTokenResult = await user.getIdTokenResult();
         this.currentUser.set(user);
+        this.userRoles.set((idTokenResult.claims as UserRoles) || {});
       } else {
         this.currentUser.set(null);
+        this.userRoles.set({});
       }
     });
   }
@@ -62,6 +68,7 @@ export class AuthService {
 
   async logout(): Promise<void> {
     await signOut(this.auth);
+    this.userRoles.set({}); // Clear roles on logout
     this.router.navigate(['/login']);
   }
 

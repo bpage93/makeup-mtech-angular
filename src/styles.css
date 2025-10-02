@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 @plugin "daisyui";
 @plugin "daisyui" {
-  themes: [winter];
+  themes: winter;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

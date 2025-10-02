@@ -15,6 +15,7 @@ import {
   sendEmailVerification,
 } from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
+import { getDownloadURL, ref, Storage, uploadBytes } from '@angular/fire/storage';
 import { toObservable } from '@angular/core/rxjs-interop';
 
 interface UserRoles {
@@ -28,6 +29,7 @@ export class AuthService {
   auth: Auth = inject(Auth);
   router: Router = inject(Router);
   private firestore: Firestore = inject(Firestore);
+  private storage: Storage = inject(Storage);
 
   currentUser = signal<User | null>(null);
   userRoles = signal<UserRoles>({});

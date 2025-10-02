@@ -1,15 +1,13 @@
 {
   "hosting": {
     "public": "dist/makeup-mtech-angular/browser",
-<<<<<<< HEAD
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-=======
+
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
->>>>>>> test
+
     "rewrites": [
       {
         "source": "**",

@@ -5,6 +5,8 @@ import { CheckoutComponent } from './checkout-component/chechout-component';
 import { ProductListComponent } from '../app/product-list/product-list';
 import { LoginComponent } from './login-component/login-component';
 import { SignupComponent } from './signup-component/signup-component';
+import { ProfileComponent } from './profile-component/profile-component';
+import { SettingsComponent } from './settings-component/settings-component';
 
 export const routes: Routes = [
   // Routes for login and signup
@@ -33,6 +35,14 @@ export const routes: Routes = [
   {
     path: 'category/:categoryName',
     component: ProductListComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
   },
 
   // Default and wildcard routes

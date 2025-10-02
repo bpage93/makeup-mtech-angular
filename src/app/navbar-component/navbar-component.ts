@@ -5,13 +5,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { TitleCasePipe } from '@angular/common';
-import { RouterLink, RouterModule, Router } from '@angular/router';
+import { RouterLink, Router, RouterLinkActive } from '@angular/router';
 import { themeChange } from 'theme-change';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CartService } from '../Service/cart-service';
 import { AuthService } from '../Service/auth.service';
 import { inject } from '@angular/core';
-
 
 @Component({
   selector: 'app-navbar-component',
@@ -21,10 +20,10 @@ import { inject } from '@angular/core';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    TitleCasePipe,
+    // TitleCasePipe,
     CommonModule,
-    RouterModule,
     RouterLink,
+    // RouterLinkActive,
   ],
   templateUrl: './navbar-component.html',
   styleUrl: './navbar-component.css',
@@ -38,8 +37,8 @@ export class NavbarComponent {
   public cartItemCount = toSignal(this.cartService.cartCount$, { initialValue: 0 });
 
   userMenuItems = [
-    { type: 'link', label: 'Profile', icon: 'person' },
-    { type: 'link', label: 'Settings', icon: 'settings' },
+    { type: 'link', label: 'Profile', icon: 'person', route: '/profile' },
+    { type: 'link', label: 'Settings', icon: 'settings', route: '/settings' },
     { type: 'divider' },
     { type: 'link', label: 'Logout', icon: 'logout' },
     { type: 'link', label: 'Makeup', icon: 'face' },

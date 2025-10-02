@@ -34,7 +34,7 @@
     <!-- END: Mobile Hamburger Menu -->
 
     <!-- Logo / App Name section -->
-    <a class="btn btn-ghost text-2xl font-bold ml-2">
+    <a class="btn btn-ghost text-2xl font-bold ml-2" [routerLink]="'/dashboard'">
       <mat-icon class="mr-2">face</mat-icon>
       <span class="hidden md:inline-block">Makeup Pro</span>
     </a>
@@ -45,7 +45,7 @@
     <ul class="menu menu-horizontal px-1 font-semibold">
       @for (dash of dashboardItems; track dash.icon) {
       <li>
-        <a class="btn btn-ghost" [routerLink]="dash.route">
+        <a class="btn btn-ghost" routerLink="{{ dash.route }}">
           <mat-icon class="mr-1">{{ dash.icon }}</mat-icon> {{ dash.label }}
         </a>
       </li>
@@ -64,7 +64,7 @@
     </div>
 
     <!-- Theme switcher dropdown -->
-    <div class="dropdown dropdown-end">
+    <!-- <div class="dropdown dropdown-end">
       <button
         mat-icon-button
         class="btn btn-ghost btn-circle mx-2"
@@ -81,7 +81,7 @@
         </li>
         }
       </ul>
-    </div>
+    </div> -->
 
     <!-- User account menu -->
     <div class="dropdown dropdown-end">
@@ -107,7 +107,7 @@
         @for (item of userMenuItems; track item.icon) { @if (item.type === 'link') { @if (item.label
         !== 'Logout') {
         <li>
-          <a>
+          <a [routerLink]="item.route">
             <mat-icon>{{ item.icon }}</mat-icon> {{ item.label }}
           </a>
         </li>

@@ -24,7 +24,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatButtonModule,
     MatStepperModule,
-    MatDividerModule,
+    MatDividerModule
   ],
   templateUrl: './chechout-component.html',
 })

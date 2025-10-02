@@ -11,8 +11,11 @@ import {
   signInWithPopup,
   User,
   onAuthStateChanged,
+  updateProfile,
+  sendEmailVerification,
 } from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
+import { getDownloadURL, ref, Storage, uploadBytes } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 
 import { toObservable } from '@angular/core/rxjs-interop';
@@ -23,6 +26,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 export class AuthService {
   auth: Auth = inject(Auth);
   router: Router = inject(Router);
+  private storage = inject(Storage);
   currentUser = signal<User | null>(null);
   user$ = toObservable(this.currentUser);
 
@@ -70,6 +74,47 @@ export class AuthService {
     } catch (error) {
       console.error('Google sign-in error', error);
       throw error;
+    }
+  }
+
+  async updateProfile(displayName: string) {
+    const user = this.auth.currentUser;
+    if (user) {
+      try {
+        await updateProfile(user, { displayName });
+        // After updating, refresh the signal with the latest user data
+        if (this.auth.currentUser) {
+          this.currentUser.set(this.auth.currentUser);
+        }
+      } catch (error) {
+        console.error('Error updating profile:', error);
+        throw error;
+      }
+    }
+  }
+
+  async uploadProfileImage(file: File, user: User): Promise<string> {
+    const filePath = `profile-images/${user.uid}/${file.name}`;
+    const storageRef = ref(this.storage, filePath);
+    await uploadBytes(storageRef, file);
+    const downloadUrl = await getDownloadURL(storageRef);
+    return downloadUrl;
+  }
+
+  async updatePhotoURL(photoURL: string) {
+    const user = this.auth.currentUser;
+    if (user) {
+      await updateProfile(user, { photoURL });
+      if (this.auth.currentUser) {
+        this.currentUser.set(this.auth.currentUser);
+      }
+    }
+  }
+
+  async sendEmailVerification() {
+    const user = this.auth.currentUser;
+    if (user) {
+      await sendEmailVerification(user);
     }
   }
 

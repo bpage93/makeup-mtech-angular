@@ -1,32 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { CommonModule, NgForOf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { TitleCasePipe } from '@angular/common';
-import { RouterLink, Router, RouterLinkActive } from '@angular/router';
-import { themeChange } from 'theme-change';
-import { toSignal } from '@angular/core/rxjs-interop';
+
 import { CartService } from '../Service/cart-service';
 import { AuthService } from '../Service/auth.service';
-import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-navbar-component',
   standalone: true,
   imports: [
+    CommonModule,
+    RouterLink,
+    RouterLinkActive,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    // TitleCasePipe,
-    CommonModule,
-    RouterLink,
-    // RouterLinkActive,
   ],
+  styleUrls: ['./navbar-component.css'],
   templateUrl: './navbar-component.html',
-  styleUrl: './navbar-component.css',
 })
 export class NavbarComponent {
   private cartService = inject(CartService);

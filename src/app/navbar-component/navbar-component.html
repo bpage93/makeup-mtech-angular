@@ -91,10 +91,8 @@
         aria-label="User account menu"
         tabindex="0"
       >
-        <div
-          class="w-10 rounded-full bg-neutral text-neutral-content flex items-center justify-center"
-        >
-          <mat-icon>person</mat-icon>
+        <div class="w-10 rounded-full">
+          <img [src]="user()?.photoURL || 'assets/placeholder.jpg'" alt="User Avatar" />
         </div>
       </button>
       <ul
@@ -117,7 +115,7 @@
             <mat-icon>{{ item.icon }}</mat-icon> {{ item.label }}
           </a>
         </li>
-        } } @if (item.type === 'divider') {
+        } } @else if (item.type === 'divider') {
         <li class="menu-title"></li>
         } }
       </ul>

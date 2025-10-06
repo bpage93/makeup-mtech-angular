@@ -9,19 +9,19 @@ export interface AdminUserSearchResult {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminService {
   private functions: Functions = inject(Functions);
 
   /**
-   * Searches for a user by their email address via a Cloud Function.
-   * @param email The email to search for.
+   * Searches for a user by their UID via a Cloud Function.
+   * @param uid The UID to search for.
    * @returns A promise that resolves with the user data or null if not found.
    */
-  async findUser(email: string): Promise<AdminUserSearchResult | null> {
-    const findUserFn = httpsCallable(this.functions, 'findUserByEmail');
-    const result = await findUserFn({ email });
+  async findUser(uid: string): Promise<AdminUserSearchResult | null> {
+    const findUserFn = httpsCallable(this.functions, 'findUserById');
+    const result = await findUserFn({ uid });
     return result.data as AdminUserSearchResult | null;
   }
 

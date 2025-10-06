@@ -38,7 +38,7 @@ export class NavbarComponent {
     { type: 'link', label: 'Settings', icon: 'settings', route: '/settings' },
     { type: 'divider' },
     { type: 'link', label: 'Logout', icon: 'logout' },
-    { type: 'link', label: 'Makeup', icon: 'face' },
+    { type: 'link', label: 'Makeup', icon: 'face', route: '/shop' },
   ];
 
   dashboardItems = [

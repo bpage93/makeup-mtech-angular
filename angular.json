@@ -76,6 +76,14 @@
             ],
             "styles": ["src/styles.css"]
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2,
+            "browserTarget": "makeup-mtech-angular:build:production",
+            "functionTarget": "makeup-mtech-angular:serve:production"
+          }
         }
       }
     }

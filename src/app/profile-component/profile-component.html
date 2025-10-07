@@ -8,10 +8,25 @@
       <mat-card-title>User Profile</mat-card-title>
     </mat-card-header>
     <mat-card-content>
+      <pre>{{ user() }}</pre>
       <div class="flex justify-center my-4">
         <div class="avatar">
-          <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <img [src]="user()?.photoURL || 'assets/placeholder.jpg'" />
+          <div
+            class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 flex items-center justify-center overflow-hidden"
+          >
+            <img
+              *ngIf="user()?.photoURL; else placeholderIcon"
+              [src]="user()?.photoURL"
+              alt="User profile image"
+              class="w-full h-full object-cover"
+            />
+            <ng-template #placeholderIcon>
+              <div
+                class="w-full h-full bg-neutral text-neutral-content flex items-center justify-center"
+              >
+                <mat-icon class="!h-auto !w-auto text-6xl">person</mat-icon>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>

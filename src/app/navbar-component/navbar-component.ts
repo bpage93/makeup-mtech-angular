@@ -17,7 +17,6 @@ import { AuthService } from '../Service/auth.service';
   imports: [
     CommonModule,
     RouterLink,
-    RouterLinkActive,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

@@ -91,8 +91,20 @@
         aria-label="User account menu"
         tabindex="0"
       >
-        <div class="w-10 rounded-full">
-          <img [src]="user()?.photoURL || 'assets/placeholder.jpg'" alt="User Avatar" />
+        <div class="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
+          <img
+            *ngIf="user()?.photoURL; else navPlaceholderIcon"
+            [src]="user()?.photoURL"
+            alt="User Avatar"
+            class="w-full h-full object-cover"
+          />
+          <ng-template #navPlaceholderIcon>
+            <div
+              class="w-full h-full bg-neutral text-neutral-content flex items-center justify-center"
+            >
+              <mat-icon>person</mat-icon>
+            </div>
+          </ng-template>
         </div>
       </button>
       <ul
